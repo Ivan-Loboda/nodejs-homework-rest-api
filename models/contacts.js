@@ -65,9 +65,9 @@ async function updateContact(contactId, body) {
         if (contact.id === contactId) {
           const updatedContact = {
             ...contact,
-            name: body.name ?? body.name,
-            email: body.email ?? body.email,
-            phone: body.phone ?? body.phone,
+            name: body.name ?? contact.name,
+            email: body.email ?? contact.email,
+            phone: body.phone ?? contact.phone,
           };
           acc.updatedContact = updatedContact;
           acc.allContacts.push(updatedContact);
