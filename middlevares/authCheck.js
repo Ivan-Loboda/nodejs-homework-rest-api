@@ -9,15 +9,15 @@ const authCheck = async (req, res, next) => {
   }
 
   const [, token] = authorization.split(" ");
-  const user = jwt.decode(token, process.env.JWT_SECRET);
-  if (!user) {
+  const tokenCheck = jwt.decode(token, process.env.JWT_SECRET);
+  if (!tokenCheck) {
     return res.status(401).json({ message: "Not authorized" });
   }
 
-  const u = await User.findById(user._id);
+  const user = await User.findById(tokenCheck._id);
 
   req.token = token;
-  req.user = u;
+  req.user = user;
   req.id = user._id;
   next();
 };

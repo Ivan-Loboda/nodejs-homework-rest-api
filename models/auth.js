@@ -51,6 +51,16 @@ const logout = async (userId) => {
     }
 };
 
+const current = async (userId) => {
+    try {
+        const user = await User.findById({ _id: userId });
+        const userData = { email: user.email, subscription: user.subscription };
+        return userData;
+    } catch (error) {
+        console.log("error", error.message);
+    }
+};
+
 module.exports = {
-    registration, login, logout,
+    registration, login, logout, current,
 }

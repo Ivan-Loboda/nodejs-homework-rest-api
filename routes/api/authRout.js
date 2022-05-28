@@ -3,7 +3,7 @@ const router = express.Router();
 const { userValidation } = require("../../middlevares/validate.js");
 const { authCheck } = require("../../middlevares/authCheck.js");
 const { User } = require("../../models/authModel")
-const { registration, login, logout } = require("../../models/auth")
+const { registration, login, logout, current } = require("../../models/auth")
 
 router.post("/signup", userValidation, async (req, res, next) => {
     const userMail = req.body.email
@@ -30,4 +30,8 @@ router.get("/logout", authCheck, async (req, res, next) => {
     res.status(204).json({ message: "No Content" });
   });
 
+router.get("/current", authCheck, async (req, res, next) => {
+    const result = await current(req.id);
+    res.json({ user: result });
+  });
 module.exports = router;
