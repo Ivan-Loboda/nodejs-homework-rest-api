@@ -102,7 +102,7 @@ const confirmEmailSecondTime = async (email) => {
         if (user.verify === true) return "Verification has already been passed";
         const msg = {
             to: email,
-            from: "iuriibilonog@gmail.com",
+            from: "tatjana.tarasovych@gmail.com",
             subject: "Please, confirm Your Email!",
             text: `Here is Your verification link - http://127.0.0.1:3000/users/verify/${user.verificationToken}`,
             html: `Here is Your verification <a href=http://127.0.0.1:3000/users/verify/${user.verificationToken}>link</a>`,
